@@ -90,8 +90,15 @@ jobs:
             # 拉取最新代码
             git fetch --all
             git reset --hard origin/main
-            # 安装依赖
-            npm ci --production
+
+
+            # 安装依赖：使用新推荐的 --omit=dev 选项，并优先尝试 npm ci
+            if [ -f "package-lock.json" ] || [ -f "npm-shrinkwrap.json" ]; then
+                npm ci --omit=dev
+            else
+                echo "Warning: No lockfile found. Falling back to npm install."
+                npm install --omit=dev
+            fi
 
             # 使用PM2重启应用：更健壮的方式
             # 检查应用是否已在PM2中运行
