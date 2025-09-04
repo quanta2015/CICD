@@ -71,6 +71,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      # 先安装 Heroku CLI[6](@ref)
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      # 然后使用部署 Action
       - name: Deploy to Heroku
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
@@ -78,6 +84,23 @@ jobs:
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           healthcheck: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/health
-          healthcheck_timeout: 45
-          healthcheck_interval: 5
-          rollback_on_healthcheck_failed: true
+          delay: 45 # 替换 healthcheck_timeout
+          rollbackonhealthcheckfailed: true # 修正参数名
+
+
+  # deploy-backend:
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #   needs: [backend, frontend]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Deploy to Heroku
+  #       uses: AkhileshNS/heroku-deploy@v3.12.12
+  #       with:
+  #         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+  #         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+  #         heroku_email: ${{ secrets.HEROKU_EMAIL }}
+  #         healthcheck: https://${{ secrets.HEROKU_APP_NAME }}.herokuapp.com/health
+  #         healthcheck_timeout: 45
+  #         healthcheck_interval: 5
+  #         rollback_on_healthcheck_failed: true
