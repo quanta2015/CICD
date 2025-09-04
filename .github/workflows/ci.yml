@@ -93,7 +93,7 @@ jobs:
             # 安装依赖
             npm ci --production
             # 使用PM2重启应用（PM2如果未启动则会自动启动）
-            pm2 restart cicd-demo || pm2 start apps/backend/server.js --name "cicd-demo"
+            pm2 restart cicd-demo || pm2 start /usr/local/cicd/apps/backend/src/server.js --name "cicd-demo"
             # 保存PM2配置以便下次开机自启
             pm2 save
             # 输出部署成功信息
