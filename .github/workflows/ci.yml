@@ -87,14 +87,14 @@ jobs:
           script: |
             # 进入项目目录，如果没有则创建
             cd ${{ secrets.ALIYUN_DEPLOY_DIR || '/usr/local/cicd/' }}
-          # 拉取最新代码
-          git fetch --all
-          git reset --hard origin/main
-          # 安装依赖
-          npm ci --production
-          # 使用PM2重启应用（PM2如果未启动则会自动启动）
-          pm2 restart cicd-demo || pm2 start apps/backend/server.js --name "cicd-demo"
-          # 保存PM2配置以便下次开机自启
-          pm2 save
-          # 输出部署成功信息
-          echo "Deployment successful!"
+            # 拉取最新代码
+            git fetch --all
+            git reset --hard origin/main
+            # 安装依赖
+            npm ci --production
+            # 使用PM2重启应用（PM2如果未启动则会自动启动）
+            pm2 restart cicd-demo || pm2 start apps/backend/server.js --name "cicd-demo"
+            # 保存PM2配置以便下次开机自启
+            pm2 save
+            # 输出部署成功信息
+            echo "Deployment successful!"
