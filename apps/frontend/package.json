@@ -27,5 +27,8 @@
     "typescript": "^5.5.4",
     "vite": "^5.3.3",
     "vitest": "^1.6.0"
+  },
+  "vitest": {
+    "environment": "jsdom"
   }
 }
