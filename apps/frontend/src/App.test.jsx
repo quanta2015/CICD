@@ -1,7 +1,6 @@
-// App.test.jsx 或 App.test.tsx
-import React from "react"; // 修复 react/react-in-jsx-scope
+import React from "react";
 import { render, screen } from "@testing-library/react";
-import { it, expect, vi } from "vitest"; // 修复 it/expect 未定义
+import { it, expect, vi } from "vitest";
 import App from "./App";
 
 vi.stubGlobal("fetch", (input) => {
