@@ -8,5 +8,9 @@ export default defineConfig({
     port: 5173,
     strictPort: false,
     proxy: { "/api": "http://localhost:3000" }
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./src/setupTests.ts"]
   }
 });
