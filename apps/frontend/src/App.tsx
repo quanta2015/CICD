@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "system-ui, Roboto, sans-serif", padding: "2rem" }}>
-      <h1>React + Node CI/CD Demo 2026</h1>
+      <h1>React + Node CI/CD Demo 2026 - test</h1>
       <p>
         Backend says: <strong data-testid="backend-msg">{backendMsg}</strong>
       </p>
